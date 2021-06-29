@@ -1,0 +1,20 @@
+for(int i = 0; i < 256; i++){
+    controlLed(1, i);
+    controlLed(2, i);
+    controlLed(3, i);
+    delay(10);
+  }
+  for(int i = 255; i > -1; i--){
+    controlLed(1, i);
+    controlLed(2, i);
+    controlLed(3, i);
+    delay(10);
+  }
+
+pitido(1);
+  pitido(2);
+  pitido(3);
+
+btnPulsado(0);
+  btnPulsado(1);
+  btnPulsado(2);
