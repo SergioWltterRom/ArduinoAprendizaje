@@ -10,8 +10,6 @@ void setup() {
 void loop() {
   ///////  Menu
   apagarPitido();  
-  do{
-    
-  }while(0);
+  
   ///////  Fin Menu
 }

@@ -1,5 +1,4 @@
 #include "Variables.h"
-#include"Clases.h"
 
 #define FREC1 311
 #define FREC2 392
