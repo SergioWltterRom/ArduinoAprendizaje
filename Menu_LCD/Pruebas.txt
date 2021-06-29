@@ -17,3 +17,7 @@ if(btnPulsado(0))
 btnPulsado(0);
   btnPulsado(1);
   btnPulsado(2);
+
+Menu:
+	4 menus
+	
