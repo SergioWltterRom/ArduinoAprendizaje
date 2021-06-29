@@ -4,12 +4,16 @@ void setup() {
   inicializar();  
   iniciarEntradas();
   iniciarSalidas();
-  iniciarLCD();
+  iniciarLCD();  
 }
 
 void loop() {
   ///////  Menu
+  apagarPitido();
+  if(btnPulsado(0))
+    pitido(3, 250);
   do{
     
-  }while();
+  }while(0);
+  ///////  Fin Menu
 }

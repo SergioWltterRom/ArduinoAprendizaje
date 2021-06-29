@@ -17,6 +17,13 @@
 #define LED3 9
 #define BUZER 10
 
+///   Variables
+
+unsigned long tiempoPitido = 0;
+bool tempPitido = false;
+int tiempoBuzer = 0;
+
+/////   Funciones
 void iniciarEntradas(){
   pinMode(BTNDERECHA, INPUT_PULLUP);
   pinMode(BTNIZQUIERDA, INPUT_PULLUP);
@@ -43,11 +50,13 @@ void iniciarLCD(){
   lcd.print("   SERGIO ROMERO");
 }
 
-void btnPulsado(byte boton){    //0 --> Btn Derecha, 1 --> Btn Izquierda, 2 --> Btn Centro
+bool btnPulsado(byte boton){    //0 --> Btn Derecha, 1 --> Btn Izquierda, 2 --> Btn Centro
+  bool resp = false;
   switch(boton){
     case 0:
       if(!digitalRead(BTNDERECHA))
-        Serial.println("Boton Derecho pulsado");
+        resp = true;
+        //Serial.println("Boton Derecho pulsado");
       break;
     case 1:
       if(!digitalRead(BTNIZQUIERDA))
@@ -60,10 +69,10 @@ void btnPulsado(byte boton){    //0 --> Btn Derecha, 1 --> Btn Izquierda, 2 --> 
     default:
       Serial.println("Este boton no existe");
   }
-  
+  return resp;
 }
 
-void controlLed(byte led, byte luminusidad){  //1 --> Led1, 2 --> Led2, 3 --> Led3
+void controlLed(byte led, byte luminusidad){  //1 --> Led1, 2 --> Led2, 3 --> Led3  
   switch(led){
     case 1:
       analogWrite(LED1, luminusidad);
@@ -75,28 +84,38 @@ void controlLed(byte led, byte luminusidad){  //1 --> Led1, 2 --> Led2, 3 --> Le
       analogWrite(LED3, luminusidad);
       break;
     default:
-      Serial.println("Este led no existe");
+      Serial.println("Este led no existe");      
   }  
 }
 
-void pitido(byte frec){
+void pitido(byte frec, int tP){
+  tempPitido = true;
   switch(frec){
     case 1:
-      tone(BUZER, FREC1);
-      delay(200);
-      noTone(BUZER);
+      tone(BUZER, FREC1);      
       break;
     case 2:
-      tone(BUZER, FREC2);
-      delay(200);
-      noTone(BUZER);
+      tone(BUZER, FREC2);      
       break;
     case 3:
-      tone(BUZER, FREC3);
-      delay(200);
-      noTone(BUZER);
+      tone(BUZER, FREC3);      
       break;
     default:
       Serial.println("Esta frecuencia no existe");
-  } 
+      tempPitido = false;
+  }
+  if(tempPitido){
+    tiempoPitido = millis();
+    tiempoBuzer = tP;
+  }    
 }
+
+///Apagar pitido
+
+void apagarPitido(){
+  if((millis() - tiempoPitido > tiempoBuzer)  && tempPitido){
+  noTone(BUZER);
+  tempPitido = false;
+  }
+}
+//////////////
