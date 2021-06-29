@@ -9,9 +9,7 @@ void setup() {
 
 void loop() {
   ///////  Menu
-  apagarPitido();
-  if(btnPulsado(0))
-    pitido(3, 250);
+  apagarPitido();  
   do{
     
   }while(0);
