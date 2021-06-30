@@ -1,15 +1,16 @@
 
 
 void setup() {
+  iniciarLCD();
   inicializar();  
   iniciarEntradas();
   iniciarSalidas();
-  iniciarLCD();  
+  focusAtachMenu();    
 }
 
 void loop() {
   ///////  Menu
-  apagarPitido();  
-  
+  apagarPitido();
+  selectOpcion();
   ///////  Fin Menu
 }

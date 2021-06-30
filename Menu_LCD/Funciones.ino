@@ -1,4 +1,4 @@
-#include "Variables.h"
+#include "MenuLcd.h"
 
 #define FREC1 311
 #define FREC2 392
@@ -9,12 +9,6 @@
 #define BTNDERECHA 2
 #define BTNIZQUIERDA 3
 #define BTNCENTRO 4
-
-/////   Salidas
-#define LED1 5
-#define LED2 6
-#define LED3 9
-#define BUZER 10
 
 ///   Variables
 
@@ -47,6 +41,7 @@ void iniciarLCD(){
   lcd.print("     BIENVENIDO");
   lcd.setCursor(0, 1);
   lcd.print("   SERGIO ROMERO");
+  menu.init();
 }
 
 bool btnPulsado(byte boton){    //0 --> Btn Derecha, 1 --> Btn Izquierda, 2 --> Btn Centro
@@ -107,6 +102,82 @@ void pitido(byte frec, int tP){
     tiempoPitido = millis();
     tiempoBuzer = tP;
   }    
+}
+
+void focusAtachMenu(){
+  /////Pantalla principal
+  linea1.set_focusPosition(Position::LEFT);
+  linea2.set_focusPosition(Position::LEFT);
+  linea3.set_focusPosition(Position::LEFT);
+  linea4.set_focusPosition(Position::LEFT);
+  linea5.set_focusPosition(Position::LEFT);
+  linea6.set_focusPosition(Position::LEFT);
+  linea7.set_focusPosition(Position::LEFT);
+
+  linea1.attach_function(1, fnLinea1);
+  linea2.attach_function(1, fnLinea2);
+  linea3.attach_function(1, fnLinea3);
+  linea4.attach_function(1, fnLinea4);
+  linea5.attach_function(1, fnLinea5);
+  linea6.attach_function(1, fnLinea6);
+  linea7.attach_function(1, fnLinea7);
+
+  menu.add_screen(pantallaPrinc);
+
+  /////Pantalla Led
+  linea1_Led.set_focusPosition(Position::LEFT);
+  linea2_Led.set_focusPosition(Position::LEFT);
+  linea3_Led.set_focusPosition(Position::LEFT);
+
+  linea1_Led.attach_function(1, fnLinea1_Led);
+  linea2_Led.attach_function(1, fnLinea2_Led);
+  linea3_Led.attach_function(1, fnLinea3_Led);
+
+  menu.add_screen(pantallaLed);
+
+  /////Pantalla Configuracion
+  linea1_Confi.set_focusPosition(Position::LEFT);
+  linea2_Confi.set_focusPosition(Position::LEFT);
+  linea3_Confi.set_focusPosition(Position::LEFT);
+
+  linea1_Confi.attach_function(1, fnLinea1_Confi);
+  linea2_Confi.attach_function(1, fnLinea2_Confi);
+  linea3_Confi.attach_function(1, fnLinea3_Confi);
+
+  menu.add_screen(pantallaConfi);
+
+  ///// Numero de filas
+  pantallaPrinc.set_displayLineCount(4);
+  pantallaLed.set_displayLineCount(4);
+  pantallaConfi.set_displayLineCount(4);
+
+  menu.set_focusedLine(0);
+  menu.update();
+}
+
+void selectOpcion(){
+    if(digitalRead(BTNCENTRO)){
+      Serial,println("Boton central");
+      pitido(FREC1, 300);
+      menu.call_function(1);
+      delay(500);
+  }
+}
+
+void direccionOpcion(){
+  if(digitalRead(BTNDERECHA) || digitalRead(BTNIZQUIERDA)){
+    if(digitalRead(BTNDERECHA)){
+        Serial,println("Boton derecha");
+        pitido(FREC2, 100);
+        menu.switch_focus(true);   ///Vamos hacia abajo
+    }
+    if(digitalRead(BTNIZQUIERDA)){
+        Serial,println("Boton izquierda");
+        pitido(FREC3, 100);
+        menu.switch_focus(false);   ///Vamos hacia arriba
+    }
+    menu.update();
+  }
 }
 
 ///Apagar pitido
