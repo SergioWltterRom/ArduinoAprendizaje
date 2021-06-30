@@ -34,6 +34,8 @@ void fnLinea4(){
 //////  Pantalla Led
 void fnLinea1_Led(){
   Serial.println("Estoy en funcion linea 1 de led");
+  menu.change_screen(1);
+  menu.set_focusedLine(0);
 }
 
 void fnLinea2_Led(){
@@ -57,6 +59,8 @@ void fnLinea2_Confi(){
 
 void fnLinea3_Confi(){
   Serial.println("Estoy en funcion linea 3 de Configuracion");
+  menu.change_screen(1);
+  menu.set_focusedLine(0);
 }
 
 void controlaLed(bool s){

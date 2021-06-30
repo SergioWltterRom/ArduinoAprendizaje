@@ -150,24 +150,25 @@ void focusAtachMenu(){
 }
 
 void selectOpcion(){
-    if(digitalRead(BTNCENTRO)){
+    if(!digitalRead(BTNCENTRO)){
       Serial.println("Boton central");
-      pitido(FREC1, 300);
+      pitido(1, 300);
       menu.call_function(1);
       delay(500);
   }
 }
 
 void direccionOpcion(){
-  if(digitalRead(BTNDERECHA) || digitalRead(BTNIZQUIERDA)){
-    if(digitalRead(BTNDERECHA)){
-        Serial.println("Boton derecha");
-        pitido(FREC2, 100);
-        menu.switch_focus(true);   ///Vamos hacia abajo
+  if(!digitalRead(BTNDERECHA) || !digitalRead(BTNIZQUIERDA)){
+    if(!digitalRead(BTNDERECHA)){
+        Serial.println("Boton abajo");
+      pitido(2, 100);
+      menu.switch_focus(true);   ///Vamos hacia abajo
+      delay(500);
     }
-    if(digitalRead(BTNIZQUIERDA)){
+    if(!digitalRead(BTNIZQUIERDA)){
         Serial.println("Boton izquierda");
-        pitido(FREC3, 100);
+        pitido(3, 100);
         menu.switch_focus(false);   ///Vamos hacia arriba
     }
     menu.update();

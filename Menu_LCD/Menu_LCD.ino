@@ -1,4 +1,4 @@
-
+#include "Variables.h"
 
 void setup() {
   iniciarLCD();
@@ -12,5 +12,6 @@ void loop() {
   ///////  Menu
   apagarPitido();
   selectOpcion();
+  direccionOpcion();
   ///////  Fin Menu
 }
