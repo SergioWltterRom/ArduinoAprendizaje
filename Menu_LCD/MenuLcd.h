@@ -1,15 +1,12 @@
 #include "Variables.h"
 
 ////////    Pantalla Principal
-LiquidLine linea1(1, 0, "Home");
-LiquidLine linea2(1, 1, "Controlar Led 1");
-LiquidLine linea3(1, 2, "Controlar Led 2");
-LiquidLine linea4(1, 3, "Controlar Led 3");
-LiquidLine linea5(1, 0, "Atras");
-LiquidLine linea6(1, 1, "Controlar Todos Leds");
-LiquidLine linea7(1, 2, "Cinfiguracion");
+LiquidLine linea1(1, 1, "Controlar Led 1");
+LiquidLine linea2(1, 2, "Controlar Led 2");
+LiquidLine linea3(1, 3, "Controlar Led 3");
+LiquidLine linea4(1, 2, "Cinfiguracion");
 
-LiquidScreen pantallaPrinc(linea1, linea2, linea3, linea4, linea5, linea6, linea7);
+LiquidScreen pantallaPrinc(linea1, linea2, linea3, linea4);
 
 /////////  Pantalla Control Led
 LiquidLine linea1_Led(1, 0, "Atras");
@@ -25,4 +22,4 @@ LiquidLine linea3_Confi(1, 2, "Encender Pantalla");
 
 LiquidScreen pantallaConfi(linea1_Confi, linea2_Confi, linea3_Confi);
 
-LiquidMenu menu(lcd, pantalaPrinc, pantalaLed, pantalaConfi);
+LiquidMenu menu(lcd, pantallaPrinc, pantallaLed, pantallaConfi);

@@ -1,10 +1,11 @@
 #include "Definiciones.h"
 #include <LiquidCrystal_I2C.h>
 #include <LiquidMenu.h>
+//#include "Arduino.h"
 
 #define DIRECCION 0X27
 #define FILAS 4
-#define COLUM 20
+#define COLUM 16
 
 /////   Salidas
 #define LED1 5

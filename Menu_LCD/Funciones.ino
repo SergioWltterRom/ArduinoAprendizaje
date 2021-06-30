@@ -110,17 +110,11 @@ void focusAtachMenu(){
   linea2.set_focusPosition(Position::LEFT);
   linea3.set_focusPosition(Position::LEFT);
   linea4.set_focusPosition(Position::LEFT);
-  linea5.set_focusPosition(Position::LEFT);
-  linea6.set_focusPosition(Position::LEFT);
-  linea7.set_focusPosition(Position::LEFT);
 
   linea1.attach_function(1, fnLinea1);
   linea2.attach_function(1, fnLinea2);
   linea3.attach_function(1, fnLinea3);
   linea4.attach_function(1, fnLinea4);
-  linea5.attach_function(1, fnLinea5);
-  linea6.attach_function(1, fnLinea6);
-  linea7.attach_function(1, fnLinea7);
 
   menu.add_screen(pantallaPrinc);
 
@@ -157,7 +151,7 @@ void focusAtachMenu(){
 
 void selectOpcion(){
     if(digitalRead(BTNCENTRO)){
-      Serial,println("Boton central");
+      Serial.println("Boton central");
       pitido(FREC1, 300);
       menu.call_function(1);
       delay(500);
@@ -167,12 +161,12 @@ void selectOpcion(){
 void direccionOpcion(){
   if(digitalRead(BTNDERECHA) || digitalRead(BTNIZQUIERDA)){
     if(digitalRead(BTNDERECHA)){
-        Serial,println("Boton derecha");
+        Serial.println("Boton derecha");
         pitido(FREC2, 100);
         menu.switch_focus(true);   ///Vamos hacia abajo
     }
     if(digitalRead(BTNIZQUIERDA)){
-        Serial,println("Boton izquierda");
+        Serial.println("Boton izquierda");
         pitido(FREC3, 100);
         menu.switch_focus(false);   ///Vamos hacia arriba
     }

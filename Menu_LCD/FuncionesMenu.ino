@@ -3,45 +3,29 @@
 byte ledSeleccionado = 0;
 
 //////  Pantalla principal
-void fnLinea1(){
-  Serial.println("Estoy en funcion linea 1");
-  //menu.change_screen(2);
-  //menu.set_focusedLine(0);
-}
 
-void fnLinea2(){
+void fnLinea1(){
   Serial.println("Estoy en funcion linea 2");
   menu.change_screen(2);
   menu.set_focusedLine(0);
   ledSeleccionado = 1;
 }
 
-void fnLinea3(){
+void fnLinea2(){
   Serial.println("Estoy en funcion linea 3");
   menu.change_screen(2);
   menu.set_focusedLine(0);
   ledSeleccionado = 2;
 }
 
-void fnLinea4(){
+void fnLinea3(){
   Serial.println("Estoy en funcion linea 4");
   menu.change_screen(2);
   menu.set_focusedLine(0);
   ledSeleccionado = 3;
 }
 
-void fnLinea5(){
-  Serial.println("Estoy en funcion linea 5");
-}
-
-void fnLinea6(){
-  Serial.println("Estoy en funcion linea 6");
-  menu.change_screen(2);
-  menu.set_focusedLine(0);
-  ledSeleccionado = 0;
-}
-
-void fnLinea7(){
+void fnLinea4(){
   Serial.println("Estoy en funcion linea 7");
   menu.change_screen(3);
   menu.set_focusedLine(0);
